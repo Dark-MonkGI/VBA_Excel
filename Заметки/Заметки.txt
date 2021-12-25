@@ -1,0 +1,33 @@
+
+Sub Copy100()
+Application.DisplayAlerts = False
+Application.ScreenUpdating = False
+Application.EnableEvents = False
+Application.Calculation = xlCalculationManual
+ 
+Dim lLastRow&: Dim lLastCol&: Dim n%
+lLastRow = ActiveSheet.UsedRange.Row + ActiveSheet.UsedRange.Rows.Count - 1
+lLastCol = ActiveSheet.UsedRange.Column + ActiveSheet.UsedRange.Columns.Count - 1
+ 
+n = 5
+For i = lLastRow To 1 Step -1
+    Rows(i & ":" & i).Copy
+    Rows(i & ":" & i + n).Insert Shift:=xlDown
+Next i
+Range("A1").Activate
+ 
+Application.DisplayAlerts = True
+Application.ScreenUpdating = True
+Application.EnableEvents = True
+Application.Calculation = xlCalculationAutomatic
+ 
+End Sub
+
+
+
+----Индекс последней строки---------
+
+Dim lr As Long 'это число строк
+lr = Cells(Rows.Count, "A").End(xlUp).Row 'для простоты будем искать конец столбца А 
+
+---------------------------------------------
